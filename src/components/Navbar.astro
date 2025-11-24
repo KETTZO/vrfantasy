@@ -1,0 +1,331 @@
+---
+// Navbar.astro (Versión adaptada para VR Fantasy)
+import logo from '../assets/vr-fantasy-logo.webp'; // Asegúrate de tener este logo
+import { Image } from 'astro:assets';
+---
+
+<header class="fixed top-0 left-0 w-full z-[1000] py-3 px-4">
+  <div class="w-full max-w-[1400px] mx-auto lg:w-[70%] h-auto">
+    <!-- Navbar con fondo transparente y desenfoque -->
+    <nav class="glass-nav relative flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3 lg:py-4 rounded-2xl lg:rounded-[20px] overflow-visible border border-white/20 shadow-2xl">
+      
+      <!-- Logo -->
+      <a href="#home" class="logo relative z-10 flex items-center transition-transform duration-300 hover:scale-105 -my-3 lg:-my-3.5">
+        <Image src={logo} alt="VR Fantasy LOGO" class="h-12 sm:h-14 md:h-16 lg:h-16 w-auto drop-shadow-md"/>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center gap-2 relative z-10">
+        <a href="#home" class="nav-link">Inicio</a>
+        <a href="#about" class="nav-link">VR Fantasy</a>
+        <a href="#features" class="nav-link">Características</a>
+        <a href="#download" class="nav-link">Descargar</a>
+        <a href="#gallery" class="nav-link">Galería</a>
+        <a href="#footer" class="nav-link">Contacto</a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button 
+        id="mobile-menu-btn" 
+        class="md:hidden relative z-10 p-2 rounded-lg hover:bg-white/10 transition-colors"
+        aria-label="Abrir menú"
+      >
+        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path class="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          <path class="close-icon hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden opacity-0 invisible transition-all duration-300 ease-out -translate-y-4 max-h-0 overflow-hidden">
+      <div class="glass-nav rounded-2xl px-4 py-3 flex flex-col gap-1 mt-2 border border-white/20 shadow-2xl">
+        <a href="#home" class="nav-link-mobile">Inicio</a>
+        <a href="#about" class="nav-link-mobile">VR Fantasy</a>
+        <a href="#features" class="nav-link-mobile">Características</a>
+        <a href="#download" class="nav-link-mobile">Descargar</a>
+        <a href="#gallery" class="nav-link-mobile">Galería</a>
+        <a href="#footer" class="nav-link-mobile">Contacto</a>
+        
+        <!-- Call to Action Mobile -->
+        <div class="border-t border-white/20 mt-3 pt-3">
+          <a href="#download" class="mobile-cta-button w-full inline-flex items-center justify-center py-3 px-6 bg-gradient-to-r from-[#fdcea4] to-[#ad0058] text-white rounded-xl font-semibold text-sm transition-all duration-300 hover:from-[#ad0058] hover:to-[#fdcea4] hover:shadow-lg transform hover:-translate-y-0.5">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            Descargar Ahora
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  /* Variables de color para VR Fantasy */
+  :root {
+    --gradient-primary-1: #fdcea4;
+    --gradient-primary-2: #ad0058;
+    --gradient-secondary-1: #ffd758;
+    --gradient-secondary-2: #ffd758;
+  }
+
+  /* Navbar con fondo transparente y desenfoque */
+  .glass-nav {
+    background: rgba(10, 10, 10, 0.7) !important;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  }
+
+  /* Desktop Nav Links */
+  .nav-link {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.625rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    background: transparent;
+  }
+
+  .nav-link:hover {
+    color: #ffffff;
+    background: rgba(253, 206, 164, 0.15);
+    transform: translateY(-1px);
+  }
+
+  .nav-link.active {
+    color: #ffffff;
+    font-weight: 600;
+    background: linear-gradient(135deg, rgba(253, 206, 164, 0.2), rgba(173, 0, 88, 0.2));
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gradient-primary-1), var(--gradient-primary-2));
+    border-radius: 2px;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 60%;
+  }
+
+  /* Mobile Nav Links */
+  .nav-link-mobile {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    border-radius: 0.625rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: block;
+  }
+
+  .nav-link-mobile:hover,
+  .nav-link-mobile.active {
+    color: #ffffff;
+    background: rgba(253, 206, 164, 0.15);
+    transform: translateX(5px);
+  }
+
+  .nav-link-mobile.active {
+    font-weight: 600;
+    background: linear-gradient(135deg, rgba(253, 206, 164, 0.2), rgba(173, 0, 88, 0.2));
+  }
+
+  /* Mobile CTA Button */
+  .mobile-cta-button {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mobile-cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+  }
+
+  .mobile-cta-button:hover::before {
+    left: 100%;
+  }
+
+  /* Mobile Menu States */
+  #mobile-menu.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    max-height: 500px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  #mobile-menu:not(.open) {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-1rem);
+    max-height: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Smooth scrolling para anclas */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Animación de entrada para el navbar */
+  header {
+    animation: slideDown 0.6s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  /* Efecto de brillo sutil en hover */
+  .nav-link:hover {
+    box-shadow: 0 0 20px rgba(253, 206, 164, 0.3);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .glass-nav {
+      backdrop-filter: blur(15px) saturate(180%);
+      -webkit-backdrop-filter: blur(15px) saturate(180%);
+    }
+  }
+</style>
+
+<script is:inline>
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = document.querySelector('.menu-icon');
+  const closeIcon = document.querySelector('.close-icon');
+
+  menuBtn?.addEventListener('click', () => {
+    const isOpen = mobileMenu?.classList.contains('open');
+    
+    if (isOpen) {
+      mobileMenu?.classList.remove('open');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+    } else {
+      mobileMenu?.classList.add('open');
+      menuIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+    }
+  });
+
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', (e) => {
+    const target = e.target;
+    if (!target.closest('#mobile-menu') && !target.closest('#mobile-menu-btn')) {
+      mobileMenu?.classList.remove('open');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+    }
+  });
+
+  // Active link management with smooth scrolling
+  const setActiveLink = () => {
+    const sections = document.querySelectorAll('section[id]');
+    const scrollPos = window.scrollY + 100;
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      const sectionId = section.getAttribute('id');
+
+      if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+        const allLinks = document.querySelectorAll('.nav-link, .nav-link-mobile');
+        
+        allLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${sectionId}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  };
+
+  // Set active on load and scroll
+  document.addEventListener('DOMContentLoaded', setActiveLink);
+  window.addEventListener('scroll', setActiveLink);
+
+  // Smooth scroll for navigation links
+  document.querySelectorAll('.nav-link, .nav-link-mobile').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      const targetId = link.getAttribute('href');
+      const targetSection = document.querySelector(targetId);
+      
+      if (targetSection) {
+        // Close mobile menu after clicking a link
+        mobileMenu?.classList.remove('open');
+        menuIcon?.classList.remove('hidden');
+        closeIcon?.classList.add('hidden');
+        
+        // Smooth scroll to section
+        targetSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+        
+        // Update URL hash without scrolling
+        history.pushState(null, null, targetId);
+        
+        // Update active state after scroll
+        setTimeout(setActiveLink, 100);
+      }
+    });
+  });
+
+  // Navbar background change on scroll
+  let lastScrollY = window.scrollY;
+  const header = document.querySelector('header');
+  const nav = document.querySelector('.glass-nav');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) {
+      nav.style.background = 'rgba(10, 10, 10, 0.9)';
+      nav.style.backdropFilter = 'blur(25px) saturate(200%)';
+    } else {
+      nav.style.background = 'rgba(10, 10, 10, 0.7)';
+      nav.style.backdropFilter = 'blur(20px) saturate(180%)';
+    }
+    
+    lastScrollY = window.scrollY;
+  });
+</script>
