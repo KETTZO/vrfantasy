@@ -2101,33 +2101,7 @@ import { Image } from 'astro:assets';
             });
         });
 
-        // Precargar imágenes
-        window.addEventListener('load', function() {
-            const images = [
-                '/hero-background.jpg',
-                '/placeholder-game-1.jpg',
-                '/aa518757-786b-4e2f-ab15-9c0e13a7ea3c.png',
-                '/tech-feature.jpg',
-                '/gameplay-feature.jpg',
-                '/entertainment-feature.jpg',
-                '/innovation-feature.jpg',
-                '/placeholder-gallery-1.jpg',
-                '/placeholder-gallery-2.jpg',
-                '/placeholder-gallery-3.jpg',
-                '/placeholder-gallery-4.jpg',
-                '/placeholder-gallery-5.jpg',
-                '/placeholder-gallery-6.jpg',
-                '/placeholder-gallery-7.jpg',
-                '/placeholder-gallery-8.jpg',
-                '/placeholder-gallery-9.jpg',
-                '/placeholder-gallery-10.jpg'
-            ];
-            
-            images.forEach(src => {
-                const img = new Image();
-                img.src = src;
-            });
-        });
+    
 
         // Inicializar animaciones al cargar
         document.addEventListener('DOMContentLoaded', function() {
